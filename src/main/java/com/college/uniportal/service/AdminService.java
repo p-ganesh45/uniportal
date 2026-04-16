@@ -2,28 +2,29 @@ package com.college.uniportal.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
+//@Service
 
 import com.college.uniportal.model.Admin;
 import com.college.uniportal.repository.AdminRepository;
 
-@Service
 public class AdminService {
 
-    @Autowired
+    @Autowired(required = false)
     private AdminRepository repo;
 
-    @Autowired
+    @Autowired(required = false)
     private BCryptPasswordEncoder encoder;
 
-    // Register Admin (run once manually)
     public Admin register(Admin admin) {
+        if (repo == null || encoder == null) return admin;
+
         admin.setPassword(encoder.encode(admin.getPassword()));
         return repo.save(admin);
     }
 
-    // Login
     public boolean login(String email, String password) {
+        if (repo == null || encoder == null) return false;
+
         Admin admin = repo.findByEmail(email);
 
         if (admin != null && encoder.matches(password, admin.getPassword())) {
