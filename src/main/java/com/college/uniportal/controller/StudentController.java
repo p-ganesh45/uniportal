@@ -5,7 +5,7 @@ import com.college.uniportal.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+//@RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "*")
 public class StudentController {

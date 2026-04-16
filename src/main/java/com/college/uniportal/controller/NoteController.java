@@ -18,7 +18,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-@RestController
+//@RestController
 @RequestMapping("/api/notes")
 @CrossOrigin(origins = "*")   // ✅ FIXED CORS
 public class NoteController {
