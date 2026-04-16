@@ -8,10 +8,20 @@ import com.college.uniportal.repository.StudentRepository;
 @Service
 public class StudentService {
 
-    @Autowired
+    @Autowired(required = false)
     private StudentRepository repo;
 
+    // LOGIN OR REGISTER
     public Student loginOrRegister(Student s) {
+
+        // If DB is not available (Render temporary fix)
+        if (repo == null) {
+            Student temp = new Student();
+            temp.setUsn(s.getUsn());
+            temp.setYear(calculateYear(s.getUsn()));
+            return temp;
+        }
+
         return repo.findByUsn(s.getUsn())
                 .orElseGet(() -> {
                     Student newStudent = new Student();
@@ -21,7 +31,14 @@ public class StudentService {
                 });
     }
 
+    // UPDATE STUDENT
     public Student update(Student s) {
+
+        // If DB not available
+        if (repo == null) {
+            return s; // just return input
+        }
+
         Student existing = repo.findById(s.getId())
                 .orElseThrow(() -> new RuntimeException("Student not found"));
 
@@ -35,6 +52,7 @@ public class StudentService {
         return repo.save(existing);
     }
 
+    // CALCULATE YEAR FROM USN
     private int calculateYear(String usn) {
         try {
             int year = Integer.parseInt(usn.substring(3, 5));
