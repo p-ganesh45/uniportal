@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import com.college.uniportal.model.Admin;
 import com.college.uniportal.service.AdminService;
 
-//@RestController
+@RestController
 @RequestMapping("/api/admin")
 @CrossOrigin(origins = {"http://127.0.0.1:3000", "http://localhost:3000"})
 public class AdminController {
