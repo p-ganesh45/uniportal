@@ -367,10 +367,11 @@ async function adminLogin(){
 
 async function studentLogin(){
     let data = await api("/student/login","POST",{
-    usn: usn.value,
-    name: name.value,
-    branch: branch.value
-});
+        usn: usn.value,
+        name: name.value,
+        branch: branch.value
+    });
+
     if(!data) return;
 
     localStorage.setItem("usn",data.usn);
@@ -378,7 +379,6 @@ async function studentLogin(){
     studentPage.classList.remove("hidden");
     loadStudent();
 }
-
 function logout(){ location.reload(); }
 
 // ADMIN STUDENT SEARCH
