@@ -11,19 +11,30 @@ public class StudentService {
     @Autowired
     private StudentRepository repo;
 
-    // LOGIN OR REGISTER
+    // ✅ LOGIN OR REGISTER
     public Student loginOrRegister(Student s) {
 
-        return repo.findByUsn(s.getUsn())
-                .orElseGet(() -> {
-                    Student newStudent = new Student();
-                    newStudent.setUsn(s.getUsn());
-                    newStudent.setYear(calculateYear(s.getUsn()));
-                    return repo.save(newStudent);
-                });
+        Student existing = repo.findByUsn(s.getUsn());
+
+        if(existing != null) {
+            // 🔥 update if new data comes
+            if(s.getName() != null) existing.setName(s.getName());
+            if(s.getBranch() != null) existing.setBranch(s.getBranch());
+
+            return repo.save(existing);
+        }
+
+        // 🔥 new student
+        s.setYear(calculateYear(s.getUsn()));
+        return repo.save(s);
     }
 
-    // UPDATE STUDENT
+    // ✅ GET STUDENT (NO INSERT HERE)
+    public Student getByUsn(String usn){
+        return repo.findByUsn(usn);
+    }
+
+    // ✅ UPDATE STUDENT
     public Student update(Student s) {
 
         Student existing = repo.findById(s.getId())
@@ -39,7 +50,7 @@ public class StudentService {
         return repo.save(existing);
     }
 
-    // CALCULATE YEAR FROM USN
+    // ✅ CALCULATE YEAR FROM USN
     private int calculateYear(String usn) {
         try {
             int year = Integer.parseInt(usn.substring(3, 5));

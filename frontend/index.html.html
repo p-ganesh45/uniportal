@@ -366,7 +366,11 @@ async function adminLogin(){
 }
 
 async function studentLogin(){
-    let data = await api("/student/login","POST",{usn:usn.value});
+    let data = await api("/student/login","POST",{
+    usn: usn.value,
+    name: name.value,
+    branch: branch.value
+});
     if(!data) return;
 
     localStorage.setItem("usn",data.usn);
