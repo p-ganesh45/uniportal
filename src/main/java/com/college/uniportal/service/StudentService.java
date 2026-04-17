@@ -14,20 +14,14 @@ public class StudentService {
     // ✅ LOGIN OR REGISTER
     public Student loginOrRegister(Student s) {
 
-        Student existing = repo.findByUsn(s.getUsn());
+    Student existing = repo.findByUsn(s.getUsn());
 
-        if(existing != null) {
-            // 🔥 update if new data comes
-            if(s.getName() != null) existing.setName(s.getName());
-            if(s.getBranch() != null) existing.setBranch(s.getBranch());
-
-            return repo.save(existing);
-        }
-
-        // 🔥 new student
-        s.setYear(calculateYear(s.getUsn()));
-        return repo.save(s);
+    if(existing != null) {
+        return existing;
     }
+
+    throw new RuntimeException("Student not found. Please contact admin.");
+}
 
     // ✅ GET STUDENT (NO INSERT HERE)
     public Student getByUsn(String usn){
