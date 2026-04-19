@@ -15,11 +15,19 @@ public class StudentController {
     private StudentService service;
 
     // ✅ GET STUDENT
-    @GetMapping("/student/{usn}")
-    public Student getStudent(@PathVariable String usn) {
-        return service.getByUsn(usn);
+@GetMapping("/student/{usn}")
+public ResponseEntity<?> getStudent(@PathVariable String usn) {
+
+    Student s = service.getByUsn(usn);
+
+    if (s == null) {
+        return ResponseEntity
+                .status(404)
+                .body("Student not found");
     }
 
+    return ResponseEntity.ok(s);
+}
     // ✅ LOGIN / REGISTER
     @PostMapping("/student/login")
     public Student login(@RequestBody Student s) {
