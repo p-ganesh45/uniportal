@@ -11,17 +11,16 @@ public class StudentService {
     @Autowired
     private StudentRepository repo;
 
-    // ✅ LOGIN
+    // ✅ LOGIN (ONLY USN)
     public Student login(Student s) {
 
         Student existing = repo.findByUsn(s.getUsn());
 
-        if (existing != null &&
-            existing.getPassword().equals(s.getPassword())) {
+        if (existing != null) {
             return existing;
         }
 
-        return null; // important: NO exception
+        return null;
     }
 
     // ✅ REGISTER

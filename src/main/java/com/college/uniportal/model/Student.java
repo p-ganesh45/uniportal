@@ -9,13 +9,10 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
     private String usn;
-
     private String name;
     private String branch;
     private int year;
-
     // GETTERS & SETTERS
     public Long getId() { return id; }
     public String getUsn() { return usn; }
