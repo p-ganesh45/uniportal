@@ -11,28 +11,45 @@ public class StudentService {
     @Autowired
     private StudentRepository repo;
 
-    // ✅ LOGIN OR REGISTER
-    public Student loginOrRegister(Student s) {
+    // ✅ LOGIN
+    public Student login(Student s) {
 
-    Student existing = repo.findByUsn(s.getUsn());
+        Student existing = repo.findByUsn(s.getUsn());
 
-    if(existing != null) {
-        return existing;
+        if (existing != null &&
+            existing.getPassword().equals(s.getPassword())) {
+            return existing;
+        }
+
+        return null; // important: NO exception
     }
 
-    throw new RuntimeException("Student not found. Please contact admin.");
-}
+    // ✅ REGISTER
+    public Student register(Student s) {
 
-    // ✅ GET STUDENT (NO INSERT HERE)
+        Student existing = repo.findByUsn(s.getUsn());
+
+        if (existing != null) {
+            return null; // already exists
+        }
+
+        return repo.save(s);
+    }
+
+    // ✅ GET STUDENT
     public Student getByUsn(String usn){
         return repo.findByUsn(usn);
     }
 
-    // ✅ UPDATE STUDENT
+    // ✅ UPDATE
     public Student update(Student s) {
 
         Student existing = repo.findById(s.getId())
-                .orElseThrow(() -> new RuntimeException("Student not found"));
+                .orElse(null);
+
+        if (existing == null) {
+            return null;
+        }
 
         existing.setName(s.getName());
         existing.setBranch(s.getBranch());
@@ -42,21 +59,5 @@ public class StudentService {
         }
 
         return repo.save(existing);
-    }
-
-    // ✅ CALCULATE YEAR FROM USN
-    private int calculateYear(String usn) {
-        try {
-            int year = Integer.parseInt(usn.substring(3, 5));
-            int currentYear = java.time.Year.now().getValue() % 100;
-            int diff = currentYear - year + 1;
-
-            if (diff < 1) return 1;
-            if (diff > 4) return 4;
-
-            return diff;
-        } catch (Exception e) {
-            return 1;
-        }
     }
 }

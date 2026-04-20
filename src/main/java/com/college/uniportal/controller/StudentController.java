@@ -16,28 +16,54 @@ public class StudentController {
     private StudentService service;
 
     // ✅ GET STUDENT
-@GetMapping("/student/{usn}")
-public ResponseEntity<?> getStudent(@PathVariable String usn) {
+    @GetMapping("/student/{usn}")
+    public ResponseEntity<?> getStudent(@PathVariable String usn) {
 
-    Student s = service.getByUsn(usn);
+        Student s = service.getByUsn(usn);
 
-    if (s == null) {
-        return ResponseEntity
-                .status(404)
-                .body("Student not found");
+        if (s == null) {
+            return ResponseEntity.status(404).body("Student not found");
+        }
+
+        return ResponseEntity.ok(s);
     }
 
-    return ResponseEntity.ok(s);
-}
-    // ✅ LOGIN / REGISTER
+    // ✅ LOGIN
     @PostMapping("/student/login")
-    public Student login(@RequestBody Student s) {
-        return service.loginOrRegister(s);
+    public ResponseEntity<?> login(@RequestBody Student s) {
+
+        Student result = service.login(s);
+
+        if (result == null) {
+            return ResponseEntity.status(401).body("Invalid USN or password");
+        }
+
+        return ResponseEntity.ok(result);
+    }
+
+    // ✅ REGISTER
+    @PostMapping("/student/register")
+    public ResponseEntity<?> register(@RequestBody Student s) {
+
+        Student result = service.register(s);
+
+        if (result == null) {
+            return ResponseEntity.status(409).body("Student already exists");
+        }
+
+        return ResponseEntity.ok(result);
     }
 
     // ✅ UPDATE
     @PutMapping("/student/update")
-    public Student update(@RequestBody Student s) {
-        return service.update(s);
+    public ResponseEntity<?> update(@RequestBody Student s) {
+
+        Student updated = service.update(s);
+
+        if (updated == null) {
+            return ResponseEntity.status(404).body("Student not found");
+        }
+
+        return ResponseEntity.ok(updated);
     }
 }
