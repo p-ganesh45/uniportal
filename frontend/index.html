@@ -320,7 +320,7 @@ button:hover {
 </div>
 
 <script>
-const API = "https://uniportal-worj.onrender.com";
+const API = "https://uniportal-worj.onrender.com/api";
 
 // SAFE API
 async function api(url, method="GET", body=null){
@@ -347,7 +347,7 @@ async function api(url, method="GET", body=null){
 
 // LOGIN
 async function adminLogin(){
-    let res = await fetch(API+"/admin/login",{
+    let res = await fetch(API + "/admin/login", {
         method:"POST",
         headers:{"Content-Type":"application/json"},
         body:JSON.stringify({
@@ -361,10 +361,12 @@ async function adminLogin(){
     if(data==="Success"){
         loginPage.classList.add("hidden");
         adminPage.classList.remove("hidden");
-        loadAnnouncements(); loadNotes();
-    }else alert("Invalid");
+        loadAnnouncements(); 
+        loadNotes();
+    } else {
+        alert("Invalid");
+    }
 }
-
 async function studentLogin(){
     let data = await api("/student/login","POST",{
         usn: usn.value,
