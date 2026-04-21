@@ -61,7 +61,17 @@ PostgreSQL Database
 - Marks  
 - Attendance  
 - Announcements  
-- Notes  
+- Notes
+
+---
+📸 Screenshots
+<img width="1011" height="901" alt="image" src="https://github.com/user-attachments/assets/cc615fa6-ceb3-4e9b-bbd7-e3937f8c452d" />
+Admin Section
+<img width="1909" height="851" alt="image" src="https://github.com/user-attachments/assets/10db3653-6dce-4b5c-8d2f-e8d3b0610681" />
+
+<img width="1909" height="550" alt="image" src="https://github.com/user-attachments/assets/5106e4ce-1e59-4cfc-9d69-930c97608b3a" />
+Student Section
+<img width="1919" height="885" alt="image" src="https://github.com/user-attachments/assets/f47432a4-5cb2-4590-a76e-538b967aac6c" />
 
 ---
 
@@ -73,14 +83,14 @@ PostgreSQL Database
 - PostgreSQL  
 
 ---
-
-### 🔹 Step 1: Clone Repository
+### Steps to use
+🔹 Step 1: Clone Repository
 
 ```bash
 git clone https://github.com/p-ganesh45/uniportal-backend.git
 cd uniportal-backend
 
-
+---
 
 
 🔹 Step 2: Create Database
@@ -89,7 +99,7 @@ Open PostgreSQL and run:
 
 CREATE DATABASE uniportal;
 
-
+---
 🔹 Step 3: Configure Database
 
 Go to:
@@ -104,12 +114,14 @@ spring.datasource.password=1234
 
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
+---
 🔹 Step 4: Run Backend
 mvn spring-boot:run
 
 Backend will start at:
 
 http://localhost:8080
+---
 🔹 Step 5: Run Frontend
 
 Open frontend folder and run:
@@ -128,19 +140,10 @@ You can test APIs using Postman:
 GET http://localhost:8080/students
 POST http://localhost:8080/students/add
 
-
-📁 Project Structure
-uniportal-backend/
-├── controller/
-├── service/
-├── repository/
-├── model/
-├── config/
-└── resources/
+---
 
 
-
-<img width="1011" height="901" alt="image" src="https://github.com/user-attachments/assets/cc615fa6-ceb3-4e9b-bbd7-e3937f8c452d" />
+---
 
 
 
