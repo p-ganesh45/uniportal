@@ -1,146 +1,368 @@
-# 🚀 UniPortal – Academic Management System
+# 🎓 UniPortal
 
-## 📌 Overview
-UniPortal is a full-stack web-based academic management system designed to digitize and simplify student data management. It provides a centralized platform where administrators can manage academic records and students can access their information in real-time.
-
-The system eliminates manual paperwork, improves data accessibility, and ensures efficient communication between administrators and students.
+A modern **Student Management System** built using **Spring Boot**, **PostgreSQL (Supabase)**, **HTML**, **CSS**, and **JavaScript**. It allows administrators to manage student records, marks, attendance, announcements, and notes, while students can securely view their academic information.
 
 ---
 
-## 🎯 Key Features
+## 🚀 Live Demo
+
+### Frontend (Vercel)
+https://omega.vercel.app
+
+### Backend (Render)
+https://uniportal-worj.onrender.com
+
+---
+
+## 📂 GitHub Repository
+
+https://github.com/p-ganesh45/uniportal
+
+---
+
+# ✨ Features
 
 ### 👨‍💼 Admin Module
-- Secure admin authentication  
-- Add, update, and delete student marks  
-- Manage attendance with automatic percentage calculation  
-- Upload and manage PDF notes  
-- Post announcements  
-- Search students by USN  
+
+- Secure Admin Login
+- Search Student by USN
+- Add/Edit/Delete Marks
+- Add/Edit/Delete Attendance
+- Upload PDF Notes
+- Add/Delete Announcements
+- View Student Information
+
+### 👨‍🎓 Student Module
+
+- Student Login
+- View Marks
+- View Attendance
+- View Announcements
+- Download PDF Notes
 
 ---
 
-### 🎓 Student Module
-- Login using USN, Name, and Branch  
-- View announcements  
-- Check marks and attendance  
-- Download notes (PDF)  
-- Responsive UI (mobile + desktop)  
+# 🛠 Tech Stack
+
+## Backend
+
+- Java 17
+- Spring Boot
+- Spring Data JPA
+- Maven
+- PostgreSQL (Supabase)
+
+## Frontend
+
+- HTML5
+- CSS3
+- JavaScript
+
+## Deployment
+
+- Render (Backend)
+- Vercel (Frontend)
+- Supabase (Database)
 
 ---
 
-## 🛠 Tech Stack
+# 📁 Project Structure
 
-- **Backend:** Spring Boot (Java)  
-- **Frontend:** HTML, CSS, JavaScript  
-- **Database:** PostgreSQL (Supabase)  
-- **Architecture:** REST APIs  
-
----
-
-## 🌐 Live Demo
-
-🔗 https://uniportal-ten-omega.vercel.app/
-
----
-
-## 🏗 Architecture
-
-
-Frontend (HTML/CSS/JS)
-↓
-Spring Boot REST API
-↓
-PostgreSQL Database
-
+```
+UniPortal
+│
+├── src
+│   ├── main
+│   │   ├── java
+│   │   ├── resources
+│   │   │     └── application.properties
+│   │   └── static
+│   │
+│   └── test
+│
+├── pom.xml
+└── README.md
+```
 
 ---
 
-## 🗄 Database Design
+# ⚙ Prerequisites
 
-- Students  
-- Marks  
-- Attendance  
-- Announcements  
-- Notes
+Install the following before running the project.
 
----
-📸 Screenshots
-<img width="1011" height="901" alt="image" src="https://github.com/user-attachments/assets/cc615fa6-ceb3-4e9b-bbd7-e3937f8c452d" />
-Admin Section
-<img width="1909" height="851" alt="image" src="https://github.com/user-attachments/assets/10db3653-6dce-4b5c-8d2f-e8d3b0610681" />
-
-<img width="1909" height="550" alt="image" src="https://github.com/user-attachments/assets/5106e4ce-1e59-4cfc-9d69-930c97608b3a" />
-Student Section
-<img width="1919" height="885" alt="image" src="https://github.com/user-attachments/assets/f47432a4-5cb2-4590-a76e-538b967aac6c" />
+- Java JDK 17+
+- Maven
+- PostgreSQL or Supabase
+- Git
+- VS Code / IntelliJ IDEA
 
 ---
 
-## ⚙️ How to Use (Run Locally)
+# 📥 Installation
 
-### 🔹 Prerequisites
-- Java (JDK 17+)  
-- Maven  
-- PostgreSQL  
-
----
-### Steps to use
-🔹 Step 1: Clone Repository
+## 1. Clone Repository
 
 ```bash
-git clone https://github.com/p-ganesh45/uniportal-backend.git
-cd uniportal-backend
+git clone https://github.com/p-ganesh45/uniportal.git
+```
+
+Move into project
+
+```bash
+cd uniportal
+```
 
 ---
 
+## 2. Configure Database
 
-🔹 Step 2: Create Database
+Open
 
-Open PostgreSQL and run:
-
-CREATE DATABASE uniportal;
-
----
-🔹 Step 3: Configure Database
-
-Go to:
-
+```
 src/main/resources/application.properties
+```
 
-Update:
+Configure your database.
 
-spring.datasource.url=jdbc:postgresql://localhost:5432/uniportal
-spring.datasource.username=postgres
-spring.datasource.password=1234
+Example:
+
+```properties
+spring.datasource.url=YOUR_DATABASE_URL
+spring.datasource.username=YOUR_DATABASE_USERNAME
+spring.datasource.password=YOUR_DATABASE_PASSWORD
+
+spring.datasource.driver-class-name=org.postgresql.Driver
 
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
+
+server.port=8080
+```
+
 ---
-🔹 Step 4: Run Backend
+
+## 3. Build Project
+
+```bash
+mvn clean install
+```
+
+---
+
+## 4. Run Project
+
+```bash
 mvn spring-boot:run
+```
 
-Backend will start at:
+OR
 
+```bash
+java -jar target/*.jar
+```
+
+---
+
+## 5. Open Application
+
+Frontend
+
+```
 http://localhost:8080
----
-🔹 Step 5: Run Frontend
+```
 
-Open frontend folder and run:
+If deployed
 
-index.html
-📡 API Usage (Sample)
-Method	Endpoint	Description
-POST	/students/add	Add student
-GET	/students	Get all students
-PUT	/students/{id}	Update student
-DELETE	/students/{id}	Delete student
-🧪 API Testing
+Frontend
 
-You can test APIs using Postman:
+```
+https://omega.vercel.app
+```
 
-GET http://localhost:8080/students
-POST http://localhost:8080/students/add
+Backend
+
+```
+https://uniportal-worj.onrender.com
+```
 
 ---
+
+# 🗄 Database
+
+This project uses **PostgreSQL**.
+
+Tables are automatically created by Hibernate.
+
+Main Tables
+
+- Student
+- Marks
+- Attendance
+- Notes
+- Announcement
+- Admin
+
+---
+
+# 📷 Screenshots
+<img width="934" height="902" alt="image" src="https://github.com/user-attachments/assets/e55fe5d3-82df-4c2e-99c4-2c5c9d6df3f2" />
+<img width="1873" height="821" alt="image" src="https://github.com/user-attachments/assets/e5226127-d513-4e8f-85b2-af784b8ab8e8" />
+<img width="1892" height="673" alt="image" src="https://github.com/user-attachments/assets/a9e92103-fe15-4538-9da8-0d3779a7e297" />
+<img width="1917" height="560" alt="image" src="https://github.com/user-attachments/assets/d0419766-d795-4304-ab91-c2da845bcd3a" />
+---
+
+# 🔒 Security
+
+- Admin Authentication
+- Student Authentication
+- REST APIs
+- CORS Configuration
+- PostgreSQL Database
+
+---
+
+# 📚 API Endpoints
+
+## Admin
+
+```
+POST /api/admin/login
+```
+
+---
+
+## Student
+
+```
+POST /api/student/login
+```
+
+```
+GET /api/student/{usn}
+```
+
+---
+
+## Marks
+
+```
+POST /api/marks
+```
+
+```
+GET /api/marks/student/{usn}
+```
+
+```
+PUT /api/marks/{id}
+```
+
+```
+DELETE /api/marks/{id}
+```
+
+---
+
+## Attendance
+
+```
+POST /api/attendance
+```
+
+```
+GET /api/attendance/student/{usn}
+```
+
+```
+PUT /api/attendance/{id}
+```
+
+```
+DELETE /api/attendance/{id}
+```
+
+---
+
+## Announcements
+
+```
+GET /api/announcements
+```
+
+```
+POST /api/announcements
+```
+
+```
+DELETE /api/announcements/{id}
+```
+
+---
+
+## Notes
+
+```
+POST /api/notes
+```
+
+```
+GET /api/notes
+```
+
+```
+GET /api/notes/download/{id}
+```
+
+```
+DELETE /api/notes/{id}
+```
+
+---
+
+# 👨‍💻 Future Improvements
+
+- JWT Authentication
+- Student Profile Photo
+- Dark Mode
+- Email Notifications
+- Password Encryption
+- Role Based Access
+- Dashboard Analytics
+- Search & Filters
+- Export Reports as PDF
+- Mobile Responsive UI
+
+---
+
+# 🙋 Author
+
+**P Ganesh**
+
+GitHub
+
+https://github.com/p-ganesh45
+
+LinkedIn
+
+https://www.linkedin.com/in/p-ganesh-252a70396/
+
+---
+
+# ⭐ Support
+
+If you like this project,
+
+⭐ Star this repository
+
+🍴 Fork the repository
+
+🛠 Contribute with improvements
+
+---
+
+# 📄 License
+
+This project is developed for educational and learning purposes.
 
 
 ---
